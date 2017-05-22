@@ -99,6 +99,7 @@ int main() {
 			// Predict the vehicle's next state (noiseless).
 			pf.prediction(delta_t, sigma_pos, position_meas[i-1].velocity, position_meas[i-1].yawrate);
 		}
+    
 		// simulate the addition of noise to noiseless observation data.
 		vector<LandmarkObs> noisy_observations;
 		LandmarkObs obs;
@@ -126,6 +127,7 @@ int main() {
 				best_particle = particles[i];
 			}
 		}
+    
 		double *avg_error = getError(gt[i].x, gt[i].y, gt[i].theta, best_particle.x, best_particle.y, best_particle.theta);
 
 		for (int j = 0; j < 3; ++j) {
